@@ -1,5 +1,5 @@
 import { Point, Shape } from "../types/common";
-import { Square } from "./square";
+import { Square } from "./Square";
 // import { Square } from "./square";
 
 export class SquareGroup {

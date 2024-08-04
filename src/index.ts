@@ -1,10 +1,6 @@
-import { Square } from "./core/square";
 import { SquarePageViewer } from "./core/viewer/SquarePageViewer";
-import { SquareGroup } from "./core/SquareGroup";
 import $ from "jquery";
 import { createTeris } from "./core/Teris";
-
-// $("")
 
 // class ShowConsoleSquare implements IView {
 //   private _sq: Square

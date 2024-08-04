@@ -1,5 +1,5 @@
 import { IView } from "../../types/common";
-import { Square } from "../square";
+import { Square } from "../Square";
 import { PageConfig } from "./pageConfig";
 import $ from "jquery";
 

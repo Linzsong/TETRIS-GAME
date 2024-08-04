@@ -13,3 +13,7 @@ export interface IView {
  * 形状
  */
 export type Shape = Point[]
+
+export type Test = {
+  a: number
+}

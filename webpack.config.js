@@ -14,7 +14,15 @@ module.exports = {
     }),
   ],
   module: {
-    rules: [{ test: /.ts$/, loader: "ts-loader" }],
+    rules: [
+      {
+        test: /.ts$/,
+        use: {
+          loader: "ts-loader",
+          // options: { transpileOnly: true },
+        },
+      },
+    ],
   },
   resolve: {
     extensions: [".ts", ".js"],
