@@ -1,6 +1,6 @@
 export const PageConfig = {
-  width: 300,
-  height: 300,
+  x: 10,
+  y: 10,
 
   squareSize: {
     width: 30,

@@ -14,6 +14,8 @@ export interface IView {
  */
 export type Shape = Point[]
 
-export type Test = {
-  a: number
+export enum MoveDirection {
+  left,
+  right,
+  down
 }
