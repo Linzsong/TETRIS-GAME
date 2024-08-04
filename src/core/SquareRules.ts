@@ -26,6 +26,7 @@ export class SquareRules {
     teris: SquareGroup,
     targetPointOrDirection: Point | MoveDirection
   ): boolean {
+    debugger
     if (isPoint(targetPointOrDirection)) {
       if (this.isCanMove(teris.squarePoint, targetPointOrDirection)) {
         teris.centerPoint = targetPointOrDirection;

@@ -43,33 +43,18 @@ group.squares.forEach(sq => {
 // sq.iView = new SquarePageViewer(sq, $("#root"));
 
 $("#up")[0].addEventListener("click", () => {
-  // group.centerPoint = {
-  //   x: group.centerPoint.x,
-  //   y: group.centerPoint.y - 1
-  // }
-
-  // SquareRules.isCanMove(group.squarePoint, {
-  //   x: group.centerPoint.x,
-  //   y: group.centerPoint.y - 1
-  // })
 
 }, false);
 $("#down")[0].addEventListener("click", () => {
-  SquareRules.move(group, {
-    x: group.centerPoint.x,
-    y: group.centerPoint.y + 1
-  });
-
-  // group.centerPoint = {
+  // SquareRules.move(group, {
   //   x: group.centerPoint.x,
   //   y: group.centerPoint.y + 1
-  // }
+  // });
+  SquareRules.moveDirectly(group, MoveDirection.down);
+
+
 }, false);
 $("#left")[0].addEventListener("click", () => {
-  // group.centerPoint = {
-  //   x: group.centerPoint.x - 1,
-  //   y: group.centerPoint.y
-  // }
   SquareRules.move(group, {
     x: group.centerPoint.x - 1,
     y: group.centerPoint.y
@@ -81,39 +66,3 @@ $("#right")[0].addEventListener("click", () => {
     y: group.centerPoint.y
   });
 }, false);
-// console.log(dom);
-
-// dom.show()
-
-// setTimeout(() => {
-//   console.log('++');
-
-//     sq.color = 'blue'
-//     sq.point = {
-//     x: sq.point.x,
-//     y: sq.point.y + 1
-//   }
-
-// }, 1000)
-
-// setInterval(() => {
-
-//   sq.point = {
-//     x: sq.point.x,
-//     y: sq.point.y + 1
-//   }
-
-// }, 1000)
-
-// let show = new ShowConsoleSquare(s)
-// let ss = new Square({x: 10, y: 19}, 'red', show)
-
-// console.log(shwo);
-// ss.point = {
-//   x: 1,
-//   y: 2
-// }
-// ss.point = {
-//   x: 1,
-//   y: 2
-// }
