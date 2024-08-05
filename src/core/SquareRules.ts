@@ -63,4 +63,19 @@ export class SquareRules {
   static moveDirectly(teris: SquareGroup, direction: MoveDirection) {
     while (this.move(teris, direction)) {}
   }
+
+  /**
+   * 旋转
+   */
+  static rotate(teris: SquareGroup): boolean {
+    const newShape = teris.rotate()  //得到旋转之后新的形状
+    // console.log(newShape);
+    // teris.rotate()
+    
+
+
+
+    return false
+
+  }
 }

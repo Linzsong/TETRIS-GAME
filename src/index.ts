@@ -43,6 +43,7 @@ group.squares.forEach(sq => {
 // sq.iView = new SquarePageViewer(sq, $("#root"));
 
 $("#up")[0].addEventListener("click", () => {
+  SquareRules.rotate(group)
 
 }, false);
 $("#down")[0].addEventListener("click", () => {

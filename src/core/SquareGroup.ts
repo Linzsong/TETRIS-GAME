@@ -1,6 +1,5 @@
-import { Point, Shape } from "../types/common";
+import { Point, RotationDirection, Shape } from "../types/common";
 import { Square } from "./Square";
-// import { Square } from "./square";
 
 export class SquareGroup {
   private _squares: Square[] = [];
@@ -36,12 +35,7 @@ export class SquareGroup {
     console.log(val);
 
     // update
-    this._squarePoint.forEach((item, index) => {
-      this._squares[index].point = {
-        x: item.x + this._centerPoint.x,
-        y: item.y + this._centerPoint.y,
-      };
-    });
+    this.setSquarePoints()
   }
 
   get color() {
@@ -56,5 +50,41 @@ export class SquareGroup {
   }
   set squares(val) {
     this._squares = val;
+  }
+
+  /**
+   * 根据中心点坐标，以及形状，设置每一个小方块的坐标
+   */
+  private setSquarePoints() {
+    this._squarePoint.forEach((p, i) => {
+      this._squares[i].point = {
+        x: this._centerPoint.x + p.x,
+        y: this._centerPoint.y + p.y,
+      };
+    });
+  }
+
+  afterRotateShape(direction = RotationDirection.anticlockwise): Shape {
+    if (direction === RotationDirection.clockwise) {
+      return this._squarePoint.map((sq) => {
+        return {
+          x: -sq.y,
+          y: sq.x,
+        };
+      });
+    } else {
+      return this._squarePoint.map((sq) => {
+        return {
+          x: sq.y,
+          y: -sq.x,
+        };
+      });
+    }
+  }
+
+  rotate() {
+    const newShape = this.afterRotateShape();
+    this._squarePoint = newShape;
+    this.setSquarePoints();
   }
 }

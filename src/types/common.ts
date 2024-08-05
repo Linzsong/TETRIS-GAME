@@ -19,3 +19,8 @@ export enum MoveDirection {
   right,
   down
 }
+
+export enum RotationDirection {
+  clockwise,
+  anticlockwise
+}
