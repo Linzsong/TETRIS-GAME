@@ -3,10 +3,10 @@ import { SquareGroup } from "./SquareGroup";
 import { PageConfig } from "./viewer/pageConfig";
 
 function isPoint(obj: Point | MoveDirection | any): obj is Point {
-  if (obj.x && typeof obj.x === "undefined") {
-    return false;
+  if (obj.x && typeof obj.x !== "undefined") {
+    return true;
   }
-  return true;
+  return false;
 }
 
 export class SquareRules {
@@ -26,7 +26,6 @@ export class SquareRules {
     teris: SquareGroup,
     targetPointOrDirection: Point | MoveDirection
   ): boolean {
-    debugger
     if (isPoint(targetPointOrDirection)) {
       if (this.isCanMove(teris.squarePoint, targetPointOrDirection)) {
         teris.centerPoint = targetPointOrDirection;
