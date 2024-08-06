@@ -3,6 +3,7 @@ import { Square } from "./Square";
 
 export class SquareGroup {
   private _squares: Square[] = [];
+  protected isClock: boolean = true
   constructor(
     private _squarePoint: Shape,
     private _centerPoint: Point,
@@ -32,7 +33,6 @@ export class SquareGroup {
   }
   set centerPoint(val) {
     this._centerPoint = val;
-    console.log(val);
 
     // update
     this.setSquarePoints()
@@ -64,8 +64,8 @@ export class SquareGroup {
     });
   }
 
-  afterRotateShape(direction = RotationDirection.anticlockwise): Shape {
-    if (direction === RotationDirection.clockwise) {
+  afterRotateShape(): Shape {
+    if (this.isClock) {
       return this._squarePoint.map((sq) => {
         return {
           x: -sq.y,

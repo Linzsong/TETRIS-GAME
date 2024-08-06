@@ -20,7 +20,6 @@ export class Square {
     return this._point;
   }
   public set point(val) {
-    console.log(val);
 
     this._point = val;
     // 渲染
