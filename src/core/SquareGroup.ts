@@ -1,4 +1,4 @@
-import { Point, RotationDirection, Shape } from "../types/common";
+import { Point, Shape } from "../types/common";
 import { Square } from "./Square";
 
 export class SquareGroup {
@@ -86,5 +86,8 @@ export class SquareGroup {
     const newShape = this.afterRotateShape();
     this._squarePoint = newShape;
     this.setSquarePoints();
+    // const flag = TerisRule.isCanMove(newShape, this._centerPoint);
+    // if(flag) {
+    // }
   }
 }

@@ -20,7 +20,9 @@ export enum MoveDirection {
   down
 }
 
-export enum RotationDirection {
-  clockwise,
-  anticlockwise
+export enum GameStatus {
+  init, // 未开始
+  playing,  // 进行中
+  pause,  // 暂停
+  over,  // 游戏结束
 }

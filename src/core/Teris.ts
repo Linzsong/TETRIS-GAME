@@ -104,13 +104,13 @@ export class SMirrorShape extends SquareGroup {
 }
 
 export const shapes = [
-  // TShape,
-  // LShape,
-  // LMirrorShape,
-  // SShape,
-  // SMirrorShape,
+  TShape,
+  LShape,
+  LMirrorShape,
+  SShape,
+  SMirrorShape,
   SquareShape,
-  // LineShape
+  LineShape
 ];
 
 export const colors = ["red", "#fff", "green", "blue", "orange"];

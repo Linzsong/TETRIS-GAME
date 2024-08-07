@@ -9,15 +9,13 @@ function isPoint(obj: Point | MoveDirection | any): obj is Point {
   return false;
 }
 
-export class SquareRules {
+export class TerisRule {
   static isCanMove(shapes: Shape, tragePoint: Point): boolean {
     let trage = shapes.some((shape) => {
       const xP = shape.x + tragePoint.x;
       const yP = shape.y + tragePoint.y;
       return xP < 0 || xP > PageConfig.x - 1 || yP < 0 || yP > PageConfig.y - 1;
     });
-    console.log(trage);
-
     return !trage;
   }
   static move(teris: SquareGroup, targetPoint: Point): boolean;
@@ -68,14 +66,12 @@ export class SquareRules {
    * 旋转
    */
   static rotate(teris: SquareGroup): boolean {
-    const newShape = teris.rotate()  //得到旋转之后新的形状
-    // console.log(newShape);
-    // teris.rotate()
-    
-
-
-
-    return false
-
+    const newShape = teris.afterRotateShape(); //得到旋转之后新的形状
+    if (this.isCanMove(newShape, teris.centerPoint)) {
+      teris.rotate();
+      return true;
+    } else {
+      return false;
+    }
   }
 }
