@@ -1,26 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>俄罗斯方块</title>
-  <style>
-    #root {
-      width: 300px;
-      height: 300px;
-      background-color: black;
-      margin: 0 auto;
-      position: relative;
-    }
-  </style>
-</head>
-<body>
-  <div id="root"></div>
-  <div style="text-align: center;">
-    <button id="up">上</button>
-    <button id="down">下</button>
-    <button id="left">左</button>
-    <button id="right">右</button>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>俄罗斯方块</title>
+    <style>
+      #root {
+        /* width: 300px;
+        height: 300px; */
+        /* background-color: black; */
+        /* margin: 0 auto; */
+        /* position: relative; */
+        justify-content: center;
+        display: flex;
+      }
+
+      #panel {
+        width: 300px;
+        height: 300px;
+        background: #000;
+        position: relative;
+      }
+
+      #next {
+        position: relative;
+        width: 120px;
+        height: 120px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div id="panel"></div>
+      <div id="tip">
+        <div id="next"></div>
+      </div>
+    </div>
+    <div style="text-align: center">
+      <button id="btnPause">暂停</button>
+      <button id="btnStart">开始</button>
+
+      <button id="up">上</button>
+      <button id="down">下</button>
+      <button id="left">左</button>
+      <button id="right">右</button>
+    </div>
+  </body>
 </html>

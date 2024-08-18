@@ -3,42 +3,37 @@ import $ from "jquery";
 import { createTeris } from "./core/Teris";
 import { TerisRule } from "./core/TerisRule";
 import { MoveDirection } from "./types/common";
+import { Game } from "./core/Game";
+import { GamePageViewer } from "./core/viewer/GamePageViewer";
 
 
-const group = createTeris({ x: 5, y: 5 })
+var g = new Game(new GamePageViewer());
 
-group.squares.forEach(sq => {
-  sq.iView = new SquarePageViewer(sq, $("#root"));
-});
+// const group = createTeris({ x: 5, y: 5 })
 
-// const handler = new TerisRule()
+// group.squares.forEach(sq => {
+//   sq.iView = new SquarePageViewer(sq, $("#root"));
+// });
 
-// let sq = new Square({ x: 4, y: 6 }, "red");
-// sq.iView = new SquarePageViewer(sq, $("#root"));
+$("#btnStart")[0].addEventListener("click", () => {
+  g.start();
+}, false);
+$("#btnStart")[0].addEventListener("click", () => {
+  g.pause();
+}, false);
 
 $("#up")[0].addEventListener("click", () => {
-  TerisRule.rotate(group)
-  // group.rotate()
+  g.controlRotate();
 
 }, false);
 $("#down")[0].addEventListener("click", () => {
-  // TerisRule.move(group, {
-  //   x: group.centerPoint.x,
-  //   y: group.centerPoint.y + 1
-  // });
-  TerisRule.moveDirectly(group, MoveDirection.down);
-
-
+  g.controlDown();
 }, false);
+
 $("#left")[0].addEventListener("click", () => {
-  TerisRule.move(group, {
-    x: group.centerPoint.x - 1,
-    y: group.centerPoint.y
-  });
+  g.controlLeft();
+
 }, false);
 $("#right")[0].addEventListener("click", () => {
-  TerisRule.move(group, {
-    x: group.centerPoint.x + 1,
-    y: group.centerPoint.y
-  });
+  g.controlRight();
 }, false);

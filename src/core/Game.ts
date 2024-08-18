@@ -31,6 +31,17 @@ export class Game {
     this.autoDrop();
   }
 
+  /**
+   * 游戏暂停
+   */
+  pause() {
+    if (this._gameStatus === GameStatus.playing) {
+      this._gameStatus = GameStatus.pause;
+      clearInterval(this._timer);
+      this._timer = undefined;
+    }
+  }
+
   // 当前方块自由下落
   private autoDrop() {
     if (this._timer || this._gameStatus === GameStatus.over) {
@@ -47,6 +58,30 @@ export class Game {
   private switchTeris() {
     this._curTeris = this._nextTeris;
     this._nextTeris = createTeris({ x: 0, y: 0 });
+  }
+
+  controlLeft() {
+    if (this._curTeris && this._gameStatus === GameStatus.playing) {
+      TerisRule.move(this._curTeris, MoveDirection.left);
+    }
+  }
+
+  controlRight() {
+    if (this._curTeris && this._gameStatus === GameStatus.playing) {
+      TerisRule.move(this._curTeris, MoveDirection.right);
+    }
+  }
+
+  controlDown() {
+    if (this._curTeris && this._gameStatus === GameStatus.playing) {
+      TerisRule.moveDirectly(this._curTeris, MoveDirection.down);
+    }
+  }
+
+  controlRotate() {
+    if (this._curTeris && this._gameStatus === GameStatus.playing) {
+      TerisRule.rotate(this._curTeris);
+    }
   }
 
   // 设置中心坐标
