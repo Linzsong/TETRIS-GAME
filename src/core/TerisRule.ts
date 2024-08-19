@@ -3,7 +3,7 @@ import { SquareGroup } from "./SquareGroup";
 import { PageConfig } from "./viewer/pageConfig";
 
 function isPoint(obj: Point | MoveDirection | any): obj is Point {
-  if (obj.x && typeof obj.x !== "undefined") {
+  if (typeof obj.x !== "undefined") {
     return true;
   }
   return false;
