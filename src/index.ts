@@ -18,7 +18,7 @@ var g = new Game(new GamePageViewer());
 $("#btnStart")[0].addEventListener("click", () => {
   g.start();
 }, false);
-$("#btnStart")[0].addEventListener("click", () => {
+$("#btnPause")[0].addEventListener("click", () => {
   g.pause();
 }, false);
 

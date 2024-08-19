@@ -47,7 +47,7 @@ export class Game {
     if (this._timer || this._gameStatus === GameStatus.over) {
       return;
     }
-    this._timer = setInterval(() => {
+    this._timer = window.setInterval(() => {
       if (this._curTeris) {
         TerisRule.move(this._curTeris, MoveDirection.down);
       }
@@ -57,7 +57,12 @@ export class Game {
   // 切换方块
   private switchTeris() {
     this._curTeris = this._nextTeris;
+    this.resetCenterPoint(GameConfig.panelSize.width, this._curTeris);
     this._nextTeris = createTeris({ x: 0, y: 0 });
+    this.resetCenterPoint(GameConfig.nextSize.width, this._nextTeris);
+
+    this._viewer.swtich(this._curTeris);
+    this._viewer.showNext(this._nextTeris);
   }
 
   controlLeft() {
