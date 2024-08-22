@@ -1,5 +1,6 @@
 import { GameStatus, GameViewer, MoveDirection } from "../types/common";
 import GameConfig from "./GameConfig";
+import { Square } from "./Square";
 import { SquareGroup } from "./SquareGroup";
 import { createTeris } from "./Teris";
 import { TerisRule } from "./TerisRule";
@@ -13,6 +14,8 @@ export class Game {
   private _nextTeris: SquareGroup = createTeris({ x: 0, y: 0 });
   private _timer?: number;
   private _duration: number = 1000;
+  // 当前已经存在的小方块
+  private _exists: Square[] = [];
 
   constructor(private _viewer: GameViewer) {
     this.resetCenterPoint(GameConfig.nextSize.width, this._nextTeris);
@@ -49,7 +52,10 @@ export class Game {
     }
     this._timer = window.setInterval(() => {
       if (this._curTeris) {
-        TerisRule.move(this._curTeris, MoveDirection.down);
+        if (!TerisRule.move(this._curTeris, MoveDirection.down, this._exists)) {
+          // 触底
+          this.hitBottom();
+        }
       }
     }, this._duration);
   }
@@ -67,25 +73,27 @@ export class Game {
 
   controlLeft() {
     if (this._curTeris && this._gameStatus === GameStatus.playing) {
-      TerisRule.move(this._curTeris, MoveDirection.left);
+      TerisRule.move(this._curTeris, MoveDirection.left, this._exists);
     }
   }
 
   controlRight() {
     if (this._curTeris && this._gameStatus === GameStatus.playing) {
-      TerisRule.move(this._curTeris, MoveDirection.right);
+      TerisRule.move(this._curTeris, MoveDirection.right, this._exists);
     }
   }
 
   controlDown() {
     if (this._curTeris && this._gameStatus === GameStatus.playing) {
-      TerisRule.moveDirectly(this._curTeris, MoveDirection.down);
+      TerisRule.moveDirectly(this._curTeris, MoveDirection.down, this._exists);
+      // 触底
+      this.hitBottom();
     }
   }
 
   controlRotate() {
     if (this._curTeris && this._gameStatus === GameStatus.playing) {
-      TerisRule.rotate(this._curTeris);
+      TerisRule.rotate(this._curTeris, this._exists);
     }
   }
 
@@ -103,5 +111,16 @@ export class Game {
           })
       );
     }
+  }
+
+  // 触底后的操作
+  private hitBottom() {
+    // 将当前方块保存
+    this._exists = this._exists.concat(this._curTeris!.squares);
+    // 切换下一个方块
+    this.switchTeris();
+    // 消除方块
+
+    // 判断游戏是否结束
   }
 }
