@@ -1,7 +1,7 @@
 import { MoveDirection, Point, Shape } from "../types/common";
+import GameConfig from "./GameConfig";
 import { Square } from "./Square";
 import { SquareGroup } from "./SquareGroup";
-import { PageConfig } from "./viewer/pageConfig";
 
 function isPoint(obj: Point | MoveDirection | any): obj is Point {
   if (typeof obj.x !== "undefined") {
@@ -27,7 +27,7 @@ export class TerisRule {
     let flag = targetSquarePoints.some((sq) => {
       const xP = sq.x;
       const yP = sq.y;
-      return xP < 0 || xP > PageConfig.x - 1 || yP < 0 || yP > PageConfig.y - 1;
+      return xP < 0 || xP > GameConfig.panelSize.width - 1 || yP < 0 || yP > GameConfig.panelSize.height - 1;
     });
     if (flag) {
       return false;
