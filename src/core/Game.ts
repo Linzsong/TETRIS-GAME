@@ -8,6 +8,9 @@ import { TerisRule } from "./TerisRule";
 export class Game {
   // 游戏状态
   private _gameStatus: GameStatus = GameStatus.init;
+  public get gameStatus() {
+    return this._gameStatus;
+  }
   // 当前方块
   private _curTeris?: SquareGroup;
   // 下一个方块
@@ -18,8 +21,9 @@ export class Game {
   private _exists: Square[] = [];
 
   constructor(private _viewer: GameViewer) {
-    this.resetCenterPoint(GameConfig.nextSize.width, this._nextTeris);
-    this._viewer.showNext(this._nextTeris);
+    this.createNext();
+    // this.resetCenterPoint(GameConfig.nextSize.width, this._nextTeris);
+    this._viewer.init(this);
   }
 
   // 游戏开始
@@ -64,10 +68,14 @@ export class Game {
   private switchTeris() {
     this._curTeris = this._nextTeris;
     this.resetCenterPoint(GameConfig.panelSize.width, this._curTeris);
+    this.createNext();
+    this._viewer.swtich(this._curTeris);
+  }
+
+  
+  private createNext() {
     this._nextTeris = createTeris({ x: 0, y: 0 });
     this.resetCenterPoint(GameConfig.nextSize.width, this._nextTeris);
-
-    this._viewer.swtich(this._curTeris);
     this._viewer.showNext(this._nextTeris);
   }
 
