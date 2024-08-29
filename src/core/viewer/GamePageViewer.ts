@@ -7,6 +7,7 @@ import { SquarePageViewer } from "./SquarePageViewer";
 import $ from "jquery";
 
 export class GamePageViewer implements GameViewer {
+  
   showNext(teris: SquareGroup): void {
     teris.squares.forEach((sq) => {
       sq.iView = new SquarePageViewer(sq, $("#next"));
@@ -54,5 +55,9 @@ export class GamePageViewer implements GameViewer {
         }
       }
     });
+  }
+
+  showScoree(score: number): void {
+    
   }
 }

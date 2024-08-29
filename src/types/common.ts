@@ -40,8 +40,13 @@ export interface GameViewer {
    */
   swtich(teris: SquareGroup): void;
   /**
-   * @param teris 切换的方块对象
+   * 游戏初始化
    */
   init(game: Game): void;
+
+  /**
+   * 显示分数
+   */
+  showScoree(score: number): void;
 
 }

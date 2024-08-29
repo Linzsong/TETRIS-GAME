@@ -125,6 +125,8 @@ export class Game {
   private hitBottom() {
     // 将当前方块保存
     this._exists = this._exists.concat(this._curTeris!.squares);
+    console.log(this._exists);
+    
     // 切换下一个方块
     this.switchTeris();
     // 消除方块

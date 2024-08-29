@@ -6,26 +6,21 @@
     <title>俄罗斯方块</title>
     <style>
       #root {
-        /* width: 300px;
-        height: 300px; */
-        /* background-color: black; */
-        /* margin: 0 auto; */
-        /* position: relative; */
         justify-content: center;
         display: flex;
       }
 
+      #tip {
+        margin-left: 1em;
+      }
+
       #panel {
-        /* width: 300px; */
-        /* height: 300px; */
         background: #000;
         position: relative;
       }
 
       #next {
         position: relative;
-        /* width: 120px; */
-        /* height: 120px; */
       }
     </style>
   </head>
@@ -34,6 +29,13 @@
       <div id="panel"></div>
       <div id="tip">
         <div id="next"></div>
+        <div id="score" />
+        <p>使用键盘进行游戏：</p>
+        <p>↑：旋转</p>
+        <p>↓：向下</p>
+        <p>←：左</p>
+        <p>→：右</p>
+        <p>空格：暂停/恢复/开始</p>
       </div>
     </div>
     <div style="text-align: center">
