@@ -50,6 +50,7 @@ export class TerisRule {
     targetPointOrDirection: Point | MoveDirection,
     exists: Square[]
   ): boolean {
+    // 是坐标进行移动
     if (isPoint(targetPointOrDirection)) {
       if (this.isCanMove(teris.squarePoint, targetPointOrDirection, exists)) {
         teris.centerPoint = targetPointOrDirection;
@@ -57,6 +58,7 @@ export class TerisRule {
       }
       return false;
     } else {
+      // 是方向，修改移动后的中心点坐标
       const direction = targetPointOrDirection;
       let targetPoint: Point;
       if (direction === MoveDirection.down) {
