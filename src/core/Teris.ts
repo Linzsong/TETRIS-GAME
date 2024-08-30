@@ -10,7 +10,6 @@ export class TShape extends SquareGroup {
       { x: 1, y: 0 },
       { x: 0, y: -1 },
     ];
-    console.log('TShape');
     
     super(shapeData, _centerPoint, _color);
   }
