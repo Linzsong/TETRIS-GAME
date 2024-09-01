@@ -102,4 +102,47 @@ export class TerisRule {
       return false;
     }
   }
+
+  /**
+   * 删除方块
+   */
+  static deleteSquares(exists: Square[]): number {
+    //1. 获得y坐标数组
+    const ys = exists.map(sq => sq.point.y);
+    //2. 获取最大和最小的y坐标
+    const maxY = Math.max(...ys);
+    const minY = Math.min(...ys);
+    let num = 0;
+    for (let y = minY; y <= maxY; y++) {
+        if (this.deleteLine(exists, y)) {
+            num++;
+        }
+    }
+    return num
+  }
+
+  private static deleteLine(exists: Square[], y: number): boolean {
+    const squares = exists.filter(sq => sq.point.y === y)
+    // 改行可以删除
+    if(squares.length === GameConfig.panelSize.width) {
+      squares.forEach(sq => {
+        // 1. 删除 exists
+        const index = exists.indexOf(sq)
+        exists.splice(index, 1)
+        // 2. 从界面中删除
+        if(sq.iView) {
+          sq.iView.remove()
+        }
+      })
+      // 剩余的方块，y 轴比当前删除小的坐标全部 + 1
+      exists.filter(sq => sq.point.y < y).forEach(sq => {
+        sq.point = {
+          x: sq.point.x,
+          y: sq.point.y + 1
+        }
+      })
+      return true
+    }
+    return false
+  }
 }
