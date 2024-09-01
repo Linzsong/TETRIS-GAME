@@ -19,6 +19,14 @@ export class Game {
   private _duration: number = 1000;
   // 当前已经存在的小方块
   private _exists: Square[] = [];
+  // 积分
+  private _score: number = 0;
+  public get score() {
+    return this._score;
+  }
+  public set score(val) {
+    this._score = val;
+  }
 
   constructor(private _viewer: GameViewer) {
     this.createNext();
@@ -72,7 +80,6 @@ export class Game {
     this._viewer.swtich(this._curTeris);
   }
 
-  
   private createNext() {
     this._nextTeris = createTeris({ x: 0, y: 0 });
     this.resetCenterPoint(GameConfig.nextSize.width, this._nextTeris);
@@ -125,17 +132,30 @@ export class Game {
   private hitBottom() {
     // 将当前方块保存
     this._exists = this._exists.concat(this._curTeris!.squares);
-    
-    // 切换下一个方块
-    this.switchTeris();
+
     // 消除方块
-    const num = TerisRule.deleteSquares(this._exists)
+    const num = TerisRule.deleteSquares(this._exists);
 
     // 添加积分
-    if(num > 0) {
+    this.addScore(num);
 
-    }
+    // 切换下一个方块
+    this.switchTeris();
 
     // 判断游戏是否结束
+  }
+
+  private addScore(num: number) {
+    if (num === 0) {
+      return;
+    } else if (num === 1) {
+      this.score += 10;
+    } else if (num === 2) {
+      this.score += 25;
+    } else if (num === 3) {
+      this.score += 50;
+    } else {
+      this.score += 100;
+    }
   }
 }
