@@ -7,6 +7,17 @@ import { SquarePageViewer } from "./SquarePageViewer";
 import $ from "jquery";
 
 export class GamePageViewer implements GameViewer {
+  showGamePause(): void {
+    this.msgDom.html('游戏暂停')
+    this.msgDom.show()
+  }
+  showGameStart(): void {
+    this.msgDom.hide()
+  }
+  showGameOver(): void {
+    this.msgDom.html('游戏结束')
+    this.msgDom.show()
+  }
   
   showNext(teris: SquareGroup): void {
     teris.squares.forEach((sq) => {
@@ -52,8 +63,10 @@ export class GamePageViewer implements GameViewer {
       } else if (e.code === 'Space') {
         if (game.gameStatus === GameStatus.playing) {
           game.pause();
+          this.showGamePause()
         } else {
           game.start();
+          this.showGameStart()
         }
       }
     });

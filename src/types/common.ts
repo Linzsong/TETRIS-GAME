@@ -49,4 +49,10 @@ export interface GameViewer {
    */
   showScoree(score: number): void;
 
+  showGamePause(): void;
+
+  showGameStart(): void;
+
+  showGameOver(): void;
+
 }
