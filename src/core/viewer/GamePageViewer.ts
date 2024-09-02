@@ -38,16 +38,18 @@ export class GamePageViewer implements GameViewer {
     });
 
     //2. 注册键盘事件
-    $(document).keydown((e) => {
-      if (e.keyCode === 37) {
+    document.addEventListener('keydown', (e) => {
+      console.log(e.code);
+      
+      if (e.code === 'ArrowLeft') {
         game.controlLeft();
-      } else if (e.keyCode === 38) {
+      } else if (e.code === 'ArrowUp') {
         game.controlRotate();
-      } else if (e.keyCode === 39) {
+      } else if (e.code === 'ArrowRight') {
         game.controlRight();
-      } else if (e.keyCode === 40) {
+      } else if (e.code === 'ArrowDown') {
         game.controlDown();
-      } else if (e.keyCode === 32) {
+      } else if (e.code === 'Space') {
         if (game.gameStatus === GameStatus.playing) {
           game.pause();
         } else {
@@ -58,6 +60,6 @@ export class GamePageViewer implements GameViewer {
   }
 
   showScoree(score: number): void {
-    
+    this.scoreDom.html(score.toString())
   }
 }

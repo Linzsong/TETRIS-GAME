@@ -26,12 +26,14 @@ export class Game {
   }
   public set score(val) {
     this._score = val;
+    this._viewer.showScoree(val)
   }
 
   constructor(private _viewer: GameViewer) {
     this.createNext();
     // this.resetCenterPoint(GameConfig.nextSize.width, this._nextTeris);
     this._viewer.init(this);
+    this.score = 0
   }
 
   // 游戏开始

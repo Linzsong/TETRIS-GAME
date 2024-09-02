@@ -22,6 +22,12 @@
       #next {
         position: relative;
       }
+
+      .score {
+        color: red;
+        font-size: 20px;
+        font-weight: 600;
+      }
     </style>
   </head>
   <body>
@@ -29,7 +35,10 @@
       <div id="panel"></div>
       <div id="tip">
         <div id="next"></div>
-        <div id="score" />
+        <div class="score">
+          <span>分数：</span>
+          <span id="score" />
+        </div>
         <p>使用键盘进行游戏：</p>
         <p>↑：旋转</p>
         <p>↓：向下</p>
