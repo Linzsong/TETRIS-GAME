@@ -26,14 +26,14 @@ export class Game {
   }
   public set score(val) {
     this._score = val;
-    this._viewer.showScoree(val)
+    this._viewer.showScoree(val);
   }
 
   constructor(private _viewer: GameViewer) {
     this.createNext();
     // this.resetCenterPoint(GameConfig.nextSize.width, this._nextTeris);
     this._viewer.init(this);
-    this.score = 0
+    this.score = 0;
   }
 
   // 游戏开始
@@ -78,6 +78,22 @@ export class Game {
   private switchTeris() {
     this._curTeris = this._nextTeris;
     this.resetCenterPoint(GameConfig.panelSize.width, this._curTeris);
+    // 切换方块时，可能会溢出
+    if (
+      !TerisRule.isCanMove(
+        this._curTeris.squarePoint,
+        this._curTeris.centerPoint,
+        this._exists
+      )
+    ) {
+      // 游戏结束
+      this._gameStatus = GameStatus.over;
+      clearInterval(this._timer);
+      this._timer = undefined;
+      this._viewer.showGameOver();
+      return;
+    }
+
     this.createNext();
     this._viewer.swtich(this._curTeris);
   }
@@ -143,8 +159,6 @@ export class Game {
 
     // 切换下一个方块
     this.switchTeris();
-
-    // 判断游戏是否结束
   }
 
   private addScore(num: number) {
