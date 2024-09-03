@@ -50,7 +50,6 @@ export class GamePageViewer implements GameViewer {
 
     //2. 注册键盘事件
     document.addEventListener('keydown', (e) => {
-      console.log(e.code);
       
       if (e.code === 'ArrowLeft') {
         game.controlLeft();

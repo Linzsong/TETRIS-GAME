@@ -3,7 +3,7 @@ import GameConfig from "./GameConfig";
 import { Square } from "./Square";
 import { SquareGroup } from "./SquareGroup";
 
-function isPoint(obj: Point | MoveDirection | any): obj is Point {
+function isPoint(obj: any): obj is Point {
   if (typeof obj.x !== "undefined") {
     return true;
   }

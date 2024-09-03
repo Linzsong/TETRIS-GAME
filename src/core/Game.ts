@@ -41,11 +41,26 @@ export class Game {
     if (this._gameStatus === GameStatus.playing) {
       return;
     }
+    if (this._gameStatus === GameStatus.over) {
+      // 初始化状态
+      this.init();
+    }
     this._gameStatus = GameStatus.playing;
     if (!this._curTeris) {
       this.switchTeris();
     }
     this.autoDrop();
+    this._viewer.showGameStart();
+  }
+
+  private init() {
+    this._exists.forEach((sq) => {
+      sq.iView?.remove();
+    });
+    this._exists = [];
+    this.createNext();
+    this._curTeris = undefined;
+    this.score = 0;
   }
 
   /**
@@ -77,15 +92,15 @@ export class Game {
   // 切换方块
   private switchTeris() {
     this._curTeris = this._nextTeris;
+    // 清除
+    this._curTeris.squares.forEach((sq) => {
+      sq.iView?.remove();
+    });
     this.resetCenterPoint(GameConfig.panelSize.width, this._curTeris);
+
     // 切换方块时，可能会溢出
-    if (
-      !TerisRule.isCanMove(
-        this._curTeris.squarePoint,
-        this._curTeris.centerPoint,
-        this._exists
-      )
-    ) {
+    const { squarePoint, centerPoint } = this._curTeris;
+    if (!TerisRule.isCanMove(squarePoint, centerPoint, this._exists)) {
       // 游戏结束
       this._gameStatus = GameStatus.over;
       clearInterval(this._timer);
@@ -147,13 +162,10 @@ export class Game {
   private hitBottom() {
     // 将当前方块保存
     this._exists = this._exists.concat(this._curTeris!.squares);
-
     // 消除方块
     const num = TerisRule.deleteSquares(this._exists);
-
     // 添加积分
     this.addScore(num);
-
     // 切换下一个方块
     this.switchTeris();
   }
