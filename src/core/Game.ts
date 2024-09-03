@@ -136,13 +136,10 @@ export class Game {
     const y = 0;
     teris.centerPoint = { x, y };
     while (teris.squares.some((it) => it.point.y < 0)) {
-      teris.squares.forEach(
-        (sq) =>
-          (sq.point = {
-            x: sq.point.x,
-            y: sq.point.y + 1,
-          })
-      );
+      teris.centerPoint = {
+        x: teris.centerPoint.x,
+        y: teris.centerPoint.y + 1,
+      };
     }
   }
 
