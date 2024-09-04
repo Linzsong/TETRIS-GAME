@@ -16,7 +16,7 @@ export class Game {
   // 下一个方块
   private _nextTeris: SquareGroup = createTeris({ x: 0, y: 0 });
   private _timer?: number;
-  private _duration: number = 1000;
+  private _duration: number;
   // 当前已经存在的小方块
   private _exists: Square[] = [];
   // 积分
@@ -27,11 +27,22 @@ export class Game {
   public set score(val) {
     this._score = val;
     this._viewer.showScoree(val);
+    const level = GameConfig.levels.filter((it) => it.score <= val).pop()!;
+    
+    if (level.duration === this._duration) {
+      return;
+    }
+    this._duration = level.duration;
+    if (this._timer) {
+      clearInterval(this._timer);
+      this._timer = undefined;
+      this.autoDrop();
+    }
   }
 
   constructor(private _viewer: GameViewer) {
+    this._duration = GameConfig.levels[0].duration;
     this.createNext();
-    // this.resetCenterPoint(GameConfig.nextSize.width, this._nextTeris);
     this._viewer.init(this);
     this.score = 0;
   }
