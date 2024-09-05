@@ -10,7 +10,6 @@ export class TShape extends SquareGroup {
       { x: 1, y: 0 },
       { x: 0, y: -1 },
     ];
-    
     super(shapeData, _centerPoint, _color);
   }
 }
@@ -38,6 +37,7 @@ export class LMirrorShape extends SquareGroup {
     super(shapeData, _centerPoint, _color);
   }
 }
+
 export class SShape extends SquareGroup {
   constructor(_centerPoint: Point, _color: string) {
     const shapeData: Shape = [
@@ -55,6 +55,7 @@ export class SShape extends SquareGroup {
     this.isClock = !this.isClock
   }
 }
+
 export class LineShape extends SquareGroup {
   constructor(_centerPoint: Point, _color: string) {
     const shapeData: Shape = [
@@ -71,6 +72,7 @@ export class LineShape extends SquareGroup {
     this.isClock = !this.isClock
   }
 }
+
 export class SquareShape extends SquareGroup {
   constructor(_centerPoint: Point, _color: string) {
     const shapeData: Shape = [
@@ -85,6 +87,7 @@ export class SquareShape extends SquareGroup {
     return this.squarePoint
   }
 }
+
 export class SMirrorShape extends SquareGroup {
   constructor(_centerPoint: Point, _color: string) {
     const shapeData: Shape = [

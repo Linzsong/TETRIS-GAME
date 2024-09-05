@@ -3,10 +3,10 @@ import { Square } from "./Square";
 
 export class SquareGroup {
   private _squares: Square[] = [];
-  protected isClock: boolean = true
+  protected isClock: boolean = true;
   constructor(
-    private _squarePoint: Shape,
-    private _centerPoint: Point,
+    private _squarePoint: Shape,    // 形状
+    private _centerPoint: Point,    // 中心点
     private _color: string
   ) {
     this._squarePoint.forEach((item) => {
@@ -35,7 +35,7 @@ export class SquareGroup {
     this._centerPoint = val;
 
     // update
-    this.setSquarePoints()
+    this.setSquarePoints();
   }
 
   get color() {
@@ -86,8 +86,5 @@ export class SquareGroup {
     const newShape = this.afterRotateShape();
     this._squarePoint = newShape;
     this.setSquarePoints();
-    // const flag = TerisRule.isCanMove(newShape, this._centerPoint);
-    // if(flag) {
-    // }
   }
 }
