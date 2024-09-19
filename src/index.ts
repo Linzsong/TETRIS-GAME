@@ -1,4 +1,9 @@
 import { Game } from "./core/Game";
 import { GamePageViewer } from "./core/viewer/GamePageViewer";
+import "reflect-metadata";
 
-new Game(new GamePageViewer());
+// new Game(new GamePageViewer());
+
+// 装饰器
+import './description/index'
+// import './description-reflect-metadata/index'
